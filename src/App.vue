@@ -1,18 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar color="primary" elevation="4" height="80">
-      <v-container class="d-flex align-center">
+    <v-app-bar color="primary" elevation="4" class="app-bar-custom">
+      <v-container class="d-flex align-center pa-2">
         <v-img
           :src="config.logoPath"
-          max-height="50"
-          max-width="50"
+          class="app-logo mr-2 mr-sm-3"
           contain
-          class="mr-3"
           @error="onLogoError"
         ></v-img>
-        <v-toolbar-title class="text-h5 font-weight-bold">
+        <!-- <v-toolbar-title class="app-title font-weight-bold">
           {{ config.appName }}
-        </v-toolbar-title>
+        </v-toolbar-title> -->
         <v-spacer></v-spacer>
         <v-chip
           class="hidden-xs"
@@ -293,10 +291,55 @@ onUnmounted(() => {
   max-width: 1200px;
 }
 
-/* Hide elements on extra small screens */
+/* App bar customization */
+.app-bar-custom {
+  height: 64px !important;
+}
+
+.app-logo {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+/* Mobile optimization */
 @media (max-width: 600px) {
   .hidden-xs {
     display: none !important;
+  }
+  
+  .app-bar-custom {
+    height: 56px !important;
+  }
+  
+  .app-logo {
+    max-height: 32px;
+    max-width: 32px;
+  }
+  
+  .app-title {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 601px) and (max-width: 960px) {
+  .app-bar-custom {
+    height: 60px !important;
+  }
+  
+  .app-logo {
+    max-height: 36px;
+    max-width: 36px;
+  }
+  
+  .app-title {
+    font-size: 1.125rem;
   }
 }
 
