@@ -86,38 +86,37 @@ const maxDate = computed(() => dateRange.getEndDate())
 
 // Single month view only; multi-month logic removed
 
-// Calendar attributes for highlighting dates
+// Calendar attributes for highlighting dates (only active user)
 const calendarAttributes = computed(() => {
   const attributes = []
 
-  // Add attributes for each user's selected dates
-  users.forEach(user => {
+  if (activeUser.value) {
+    const user = activeUser.value
     const userDatesList = props.userDates[user.name] || []
-    
+
     userDatesList.forEach(dateString => {
       const date = PureDate.fromString(dateString)
-      
       attributes.push({
         key: `${user.name}-${dateString}`,
         dates: date,
         highlight: {
           color: user.color,
-          fillMode: 'light',
-          class: 'user-date-highlight'
+          fillMode: 'solid',
+          class: 'user-date-highlight-active'
         },
         popover: {
           label: user.name
         }
       })
     })
-  })
+  }
 
-  // Highlight today
+  // Highlight today (subtle)
   attributes.push({
     key: 'today',
     dates: new Date(),
     highlight: {
-      color: 'gray',
+      color: 'grey',
       fillMode: 'outline'
     }
   })
@@ -189,13 +188,11 @@ onMounted(() => {
   cursor: pointer;
 }
 
-.custom-calendar .vc-highlight {
-  opacity: 0.6;
-}
+/* Generic highlight adjustments */
+.custom-calendar .vc-highlight { opacity: 0.85; }
 
-.user-date-highlight {
-  opacity: 0.7 !important;
-}
+/* Active user solid highlight */
+.user-date-highlight-active .vc-highlight { opacity: 1 !important; }
 
 /* Multiple highlights on same day */
 .custom-calendar .vc-highlights {
