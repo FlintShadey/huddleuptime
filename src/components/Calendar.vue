@@ -8,8 +8,8 @@
         :max-date="maxDate"
         :from-page="startPage"
         @dayclick="onDayClick"
-        :rows="multiMonthRows"
-        :columns="multiMonthColumns"
+        :rows="1"
+        :columns="1"
         expanded
         borderless
         transparent
@@ -84,16 +84,7 @@ const syncingSnackbar = ref(false)
 const minDate = computed(() => dateRange.getStartDate())
 const maxDate = computed(() => dateRange.getEndDate())
 
-// Calculate how many months are in the configured range
-const monthsInRange = computed(() => {
-  const startIndex = (dateRange.startYear * 12) + (dateRange.startMonth - 1)
-  const endIndex = (dateRange.endYear * 12) + (dateRange.endMonth - 1)
-  return (endIndex - startIndex) + 1
-})
-
-// Layout: show up to 3 months per row (or whatever fits the total)
-const multiMonthColumns = computed(() => Math.min(monthsInRange.value, 3))
-const multiMonthRows = computed(() => Math.ceil(monthsInRange.value / multiMonthColumns.value))
+// Single month view only; multi-month logic removed
 
 // Calendar attributes for highlighting dates
 const calendarAttributes = computed(() => {
