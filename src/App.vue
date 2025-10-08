@@ -64,6 +64,13 @@
           </v-col>
         </v-row>
 
+        <!-- Overlap Dates (3+ users) -->
+        <v-row v-if="!initialLoading">
+          <v-col cols="12">
+            <OverlapDates :overlap-dates="overlapDates" />
+          </v-col>
+        </v-row>
+
         <!-- Error Display -->
         <v-row v-if="error">
           <v-col cols="12">
@@ -110,10 +117,11 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
 import UserSelector from './components/UserSelector.vue'
 import Calendar from './components/Calendar.vue'
 import LoadingState from './components/LoadingState.vue'
+import OverlapDates from './components/OverlapDates.vue'
 import { useSupabase } from './composables/useSupabase'
 import { useUsers } from './composables/useUsers'
 import { config, dateRange } from '../config.js'
@@ -127,6 +135,28 @@ const realtimeConnected = ref(false)
 
 // User dates storage: { userName: [dateString, ...] }
 const userDates = reactive({})
+
+// Computed: dates selected by 3 or more users
+const overlapDates = computed(() => {
+  const counts = {}
+  Object.entries(userDates).forEach(([userName, dates]) => {
+    dates.forEach(d => {
+      if (!counts[d]) counts[d] = new Set()
+      counts[d].add(userName)
+    })
+  })
+  const threshold = 3
+  return Object.entries(counts)
+    .filter(([, set]) => set.size >= threshold)
+    .map(([date, set]) => {
+      const mappedUsers = Array.from(set).map(uName => ({
+        name: uName,
+        initials: uName.split('&').map(p => p.trim()[0]).join('').toUpperCase()
+      }))
+      return { date, users: mappedUsers }
+    })
+    .sort((a,b) => a.date.localeCompare(b.date))
+})
 
 
 // Composables
