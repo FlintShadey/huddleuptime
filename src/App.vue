@@ -8,9 +8,9 @@
           contain
           @error="onLogoError"
         ></v-img>
-        <!-- <v-toolbar-title class="app-title font-weight-bold">
+        <v-toolbar-title class="app-title font-weight-bold">
           {{ config.appName }}
-        </v-toolbar-title> -->
+        </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-chip
           class="hidden-xs"
@@ -60,7 +60,7 @@
         </v-row>
 
         <!-- Calendar -->
-        <v-row v-if="!initialLoading">
+        <!-- <v-row v-if="!initialLoading">
           <v-col cols="12">
             <Calendar
               :user-dates="userDates"
@@ -69,7 +69,7 @@
               @month-changed="handleMonthChange"
             />
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <!-- Error Display -->
         <v-row v-if="error">
