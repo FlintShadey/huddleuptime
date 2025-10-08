@@ -12,13 +12,7 @@
           {{ config.appName }}
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-chip
-          class="hidden-xs"
-          color="gray"
-          variant="outlined"
-        >
-          {{ dateRange.getDisplayRange() }}
-        </v-chip>
+        <!-- Date range chip removed for mobile simplicity -->
       </v-container>
     </v-app-bar>
 
