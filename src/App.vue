@@ -63,23 +63,11 @@
         <v-row v-if="!initialLoading">
           <v-col cols="12">
             <Calendar
-              v-if="calendarReady"
               :user-dates="userDates"
               :loading="saving"
               @date-toggled="handleDateToggle"
               @month-changed="handleMonthChange"
             />
-            <v-alert
-              v-else
-              type="info"
-              variant="tonal"
-              class="mt-4"
-            >
-              Calendar data not ready yet. (Users: {{ users.length }}, User date buckets: {{ Object.keys(userDates).length }})
-            </v-alert>
-            <div v-if="debugMode" class="mt-4 text-caption text-grey-darken-1">
-              Debug: initialLoading={{ initialLoading }} saving={{ saving }} totalDates={{ totalDates }} timestamp={{ Date.now() }}
-            </div>
           </v-col>
         </v-row>
 
@@ -129,7 +117,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import UserSelector from './components/UserSelector.vue'
 import Calendar from './components/Calendar.vue'
 import LoadingState from './components/LoadingState.vue'
@@ -143,17 +131,10 @@ const saving = ref(false)
 const error = ref(null)
 const realtimeUpdateSnackbar = ref(false)
 const realtimeConnected = ref(false)
-const debugMode = ref(true) // set to false to hide diagnostics
 
 // User dates storage: { userName: [dateString, ...] }
 const userDates = reactive({})
 
-// Derived diagnostics
-const totalDates = computed(() => Object.values(userDates).reduce((acc, arr) => acc + (arr?.length || 0), 0))
-const calendarReady = computed(() => {
-  // Calendar considered ready once we have created buckets for each configured user
-  return users.every(u => Array.isArray(userDates[u.name]))
-})
 
 // Composables
 const { 
@@ -192,10 +173,6 @@ const loadAvailability = async () => {
         userDates[user.name] = []
       }
     })
-
-    if (debugMode.value) {
-      console.log('[FlintCal][loadAvailability] Loaded records:', data.length, 'Buckets:', Object.keys(userDates).length, 'Total dates:', totalDates.value)
-    }
 
     error.value = null
   } catch (err) {
