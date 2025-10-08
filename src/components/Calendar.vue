@@ -1,36 +1,15 @@
 <template>
   <v-card class="calendar-component" elevation="2">
-    <v-card-title class="d-flex justify-space-between align-center pa-4">
-      <v-btn
-        icon="mdi-chevron-left"
-        variant="text"
-        :disabled="!canGoPrevious"
-        @click="previousMonth"
-      ></v-btn>
-      
-      <h2 class="text-h5">
-        {{ currentMonthName }} {{ currentYear }}
-      </h2>
-      
-      <v-btn
-        icon="mdi-chevron-right"
-        variant="text"
-        :disabled="!canGoNext"
-        @click="nextMonth"
-      ></v-btn>
-    </v-card-title>
-
-    <v-divider></v-divider>
 
     <v-card-text class="pa-4">
       <VCalendar
         :attributes="calendarAttributes"
         :min-date="minDate"
         :max-date="maxDate"
-        :from-page="currentPage"
+        :from-page="startPage"
         @dayclick="onDayClick"
-        :rows="1"
-        :columns="1"
+        :rows="multiMonthRows"
+        :columns="multiMonthColumns"
         expanded
         borderless
         transparent
@@ -93,8 +72,8 @@ const emit = defineEmits(['date-toggled', 'month-changed'])
 const { users, activeUser, getUserColor } = useUsers()
 const { PureDate, getMonthName } = useDates()
 
-// Calendar state
-const currentPage = ref({
+// Starting page (first month in range) - navigation removed
+const startPage = ref({
   month: dateRange.startMonth,
   year: dateRange.startYear
 })
@@ -102,22 +81,19 @@ const currentPage = ref({
 const syncingSnackbar = ref(false)
 
 // Computed properties
-const currentMonthName = computed(() => getMonthName(currentPage.value.month))
-const currentYear = computed(() => currentPage.value.year)
-
 const minDate = computed(() => dateRange.getStartDate())
 const maxDate = computed(() => dateRange.getEndDate())
 
-const canGoPrevious = computed(() => {
-  const current = new Date(currentPage.value.year, currentPage.value.month - 1, 1)
-  return current > minDate.value
+// Calculate how many months are in the configured range
+const monthsInRange = computed(() => {
+  const startIndex = (dateRange.startYear * 12) + (dateRange.startMonth - 1)
+  const endIndex = (dateRange.endYear * 12) + (dateRange.endMonth - 1)
+  return (endIndex - startIndex) + 1
 })
 
-const canGoNext = computed(() => {
-  const current = new Date(currentPage.value.year, currentPage.value.month - 1, 1)
-  const max = new Date(dateRange.endYear, dateRange.endMonth - 1, 1)
-  return current < max
-})
+// Layout: show up to 3 months per row (or whatever fits the total)
+const multiMonthColumns = computed(() => Math.min(monthsInRange.value, 3))
+const multiMonthRows = computed(() => Math.ceil(monthsInRange.value / multiMonthColumns.value))
 
 // Calendar attributes for highlighting dates
 const calendarAttributes = computed(() => {
@@ -158,36 +134,7 @@ const calendarAttributes = computed(() => {
   return attributes
 })
 
-// Methods
-const previousMonth = () => {
-  if (!canGoPrevious.value) return
-
-  let { month, year } = currentPage.value
-  month--
-  
-  if (month < 1) {
-    month = 12
-    year--
-  }
-
-  currentPage.value = { month, year }
-  emit('month-changed', { month, year })
-}
-
-const nextMonth = () => {
-  if (!canGoNext.value) return
-
-  let { month, year } = currentPage.value
-  month++
-  
-  if (month > 12) {
-    month = 1
-    year++
-  }
-
-  currentPage.value = { month, year }
-  emit('month-changed', { month, year })
-}
+// Methods (navigation removed)
 
 const onDayClick = (day) => {
   if (props.loading) return
@@ -222,11 +169,7 @@ watch(() => props.loading, (newLoading) => {
 })
 
 onMounted(() => {
-  // Start at the first month in range
-  currentPage.value = {
-    month: dateRange.startMonth,
-    year: dateRange.startYear
-  }
+  // No navigation setup required now
 })
 </script>
 
