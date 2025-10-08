@@ -24,9 +24,10 @@
               <v-chip
                 v-for="user in entry.users"
                 :key="user.name"
-                :style="{ backgroundColor: user.color, color: '#fff' }"
+                :style="chipStyle(user.color)"
                 size="x-small"
-                class="ma-0"
+                class="ma-0 overlap-user-chip"
+                :title="user.name"
                 label
               >{{ user.initials }}</v-chip>
             </div>
@@ -38,6 +39,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   overlapDates: {
     type: Array,
@@ -46,6 +49,28 @@ const props = defineProps({
     default: () => []
   }
 })
+
+// Utility: return contrasting text color (black/white) based on luminance
+function chipStyle(hex) {
+  if (!hex) return {}
+  const c = hex.replace('#','')
+  if (c.length === 3) {
+    const r = c[0]+c[0], g = c[1]+c[1], b = c[2]+c[2]
+    return chipStyle('#'+r+g+b)
+  }
+  const r = parseInt(c.substr(0,2),16)
+  const g = parseInt(c.substr(2,2),16)
+  const b = parseInt(c.substr(4,2),16)
+  // Perceived luminance
+  const luminance = (0.299*r + 0.587*g + 0.114*b)/255
+  const textColor = luminance > 0.6 ? '#1d1d1d' : '#FFFFFF'
+  // Slight transparency ring for light backgrounds
+  return {
+    backgroundColor: hex,
+    color: textColor,
+    border: '1px solid rgba(0,0,0,0.15)'
+  }
+}
 </script>
 
 <style scoped>
