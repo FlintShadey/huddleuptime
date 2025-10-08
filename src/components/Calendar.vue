@@ -87,37 +87,54 @@ const maxDate = computed(() => dateRange.getEndDate())
 // Single month view only; multi-month logic removed
 
 // Calendar attributes for highlighting dates (all users with active emphasis)
+function hexToRgba(hex, alpha=1) {
+  const sanitized = hex.replace('#','')
+  const bigint = parseInt(sanitized, 16)
+  const r = (bigint >> 16) & 255
+  const g = (bigint >> 8) & 255
+  const b = bigint & 255
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
 const calendarAttributes = computed(() => {
   const attributes = []
 
   users.forEach(user => {
-    const userDatesList = props.userDates[user.name] || []
-    userDatesList.forEach(dateString => {
+    const datesForUser = props.userDates[user.name] || []
+    const isActive = activeUser.value && activeUser.value.name === user.name
+    const solidBg = user.color
+    const lightBg = hexToRgba(user.color, 0.25)
+    const borderColor = hexToRgba(user.color, 0.9)
+
+    datesForUser.forEach(dateString => {
       const date = PureDate.fromString(dateString)
-      const isActive = activeUser.value && activeUser.value.name === user.name
       attributes.push({
         key: `${user.name}-${dateString}`,
         dates: date,
         highlight: {
-          color: user.color,
-            // Active user solid, others light
-          fillMode: isActive ? 'solid' : 'light',
-          class: isActive ? 'user-date-highlight-active' : 'user-date-highlight'
+          // Use custom style instead of generic color to avoid override/uniform
+          style: {
+            backgroundColor: isActive ? solidBg : lightBg,
+            border: `2px solid ${borderColor}`,
+            color: '#fff'
+          },
+          class: isActive ? 'fc-active-highlight' : 'fc-inactive-highlight'
         },
-        popover: {
-          label: user.name
-        }
+        popover: { label: user.name }
       })
     })
   })
 
-  // Highlight today (subtle outline)
+  // Today outline
   attributes.push({
     key: 'today',
     dates: new Date(),
     highlight: {
-      color: 'grey',
-      fillMode: 'outline'
+      style: {
+        border: '2px dashed #9e9e9e',
+        backgroundColor: 'transparent'
+      },
+      class: 'fc-today'
     }
   })
 
@@ -188,14 +205,10 @@ onMounted(() => {
   cursor: pointer;
 }
 
-/* Generic highlight adjustments */
-.custom-calendar .vc-highlight { opacity: 0.7; }
-
-/* Non-active user highlight (light fill) */
-.user-date-highlight .vc-highlight { opacity: 0.55; }
-
-/* Active user solid highlight */
-.user-date-highlight-active .vc-highlight { opacity: 0.95 !important; box-shadow: 0 0 0 2px rgba(0,0,0,0.12); }
+/* Remove prior generic opacity control; rely on inline styles */
+.fc-active-highlight .vc-highlight { box-shadow: 0 0 0 2px rgba(0,0,0,0.15); }
+.fc-inactive-highlight .vc-highlight { backdrop-filter: saturate(120%); }
+.fc-today .vc-highlight { pointer-events: none; }
 
 /* Multiple highlights on same day */
 .custom-calendar .vc-highlights {
