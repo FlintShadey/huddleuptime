@@ -1,17 +1,16 @@
 <template>
   <v-app>
     <v-app-bar color="primary" elevation="4" class="app-bar-custom">
-      <v-container class="d-flex align-center pa-2">
-        <v-img
+      <v-container class="d-flex align-center pa-2 app-bar-inner">
+        <!-- <v-img
           :src="config.logoPath"
           class="app-logo mr-2 mr-sm-3"
           contain
           @error="onLogoError"
-        ></v-img>
-        <v-toolbar-title class="app-title font-weight-bold">
+        ></v-img> -->
+        <v-toolbar-title class="app-title font-weight-bold full-title">
           {{ config.appName }}
         </v-toolbar-title>
-        <v-spacer></v-spacer>
         <!-- Date range chip removed for mobile simplicity -->
       </v-container>
     </v-app-bar>
@@ -301,6 +300,14 @@ onUnmounted(() => {
   line-height: 1.2;
 }
 
+.app-bar-inner {
+  flex-wrap: nowrap;
+}
+
+.full-title {
+  white-space: nowrap;
+}
+
 /* Mobile optimization */
 @media (max-width: 600px) {
   .hidden-xs {
@@ -308,7 +315,10 @@ onUnmounted(() => {
   }
   
   .app-bar-custom {
-    height: 56px !important;
+    height: auto !important;
+    min-height: 56px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
   
   .app-logo {
@@ -316,9 +326,17 @@ onUnmounted(() => {
     max-width: 32px;
   }
   
-  .app-title {
-    font-size: 1rem;
-    line-height: 1.2;
+  .app-bar-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .full-title {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.15;
   }
 }
 
