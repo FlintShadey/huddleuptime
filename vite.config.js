@@ -15,7 +15,7 @@ export default defineConfig({
     }
   },
   // Uncomment and modify this if deploying to GitHub Pages
-  // base: '/flintcal/',
+  // base: '/timetribe/',
   build: {
     outDir: 'dist',
     sourcemap: false

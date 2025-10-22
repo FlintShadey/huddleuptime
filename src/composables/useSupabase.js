@@ -5,11 +5,15 @@ import { ref } from 'vue'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase credentials. Please check your .env file.')
+const isPlaceholder = !supabaseUrl || !supabaseAnonKey || 
+  supabaseUrl.includes('placeholder') || 
+  supabaseAnonKey.includes('placeholder')
+
+if (isPlaceholder) {
+  console.warn('Using placeholder Supabase credentials. Database operations will be simulated.')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = isPlaceholder ? null : createClient(supabaseUrl, supabaseAnonKey)
 
 // Composable for Supabase operations
 export function useSupabase() {
@@ -25,6 +29,12 @@ export function useSupabase() {
     error.value = null
     
     try {
+      // Return empty data if using placeholder credentials
+      if (!supabase) {
+        console.log('Demo mode: No database connection available')
+        return []
+      }
+
       const { data, error: dbError } = await supabase
         .from('user_availability')
         .select('*')
@@ -81,6 +91,12 @@ export function useSupabase() {
     error.value = null
     
     try {
+      // Return success if using placeholder credentials
+      if (!supabase) {
+        console.log('Demo mode: Simulating add date operation')
+        return true
+      }
+
       const { error: dbError } = await supabase
         .from('user_availability')
         .insert([

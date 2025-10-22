@@ -27,8 +27,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-
 defineProps({
   loading: {
     type: Boolean,

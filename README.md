@@ -1,8 +1,82 @@
-# FlintCal - Multi-User Availability Calendar
+# Time Tribe - Multi-User Availability Calendar
 
-A beautiful, real-time multi-user availability calendar built with Vue 3, Vuetify, and Supabase. Perfect for coordinating schedules with multiple couples or groups.
+![Time Tribe](./public/timetribe_logo.png)
 
-![FlintCal Demo](./public/FlintCal_Logo.png)
+A beautiful, real-time multi-user availability calendar built with Vue 3, Vuetify, and Supabase. Perfect for coordinating schedules with groups.
+
+## ✨ Features
+
+- 🎨 **Beautiful UI** - Modern gradient hero with prominent logo
+- 👥 **Multi-User Support** - Track availability for multiple users
+- 🎨 **Color-Coded Dates** - Each user has a unique color theme
+- ⚡ **Real-Time Sync** - Changes appear instantly across all devices
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- 📅 **Dynamic Dates** - Automatically shows current month + 3 months ahead
+- ⚙️ **Easy Configuration** - Single config file for all settings
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Set up environment variables (copy .env.example to .env)
+# Add your Supabase credentials
+
+# Run development server
+npm run dev
+```
+
+## 📚 Documentation
+
+**[→ Read Complete Documentation](./DOCS.md)**
+
+The complete documentation includes:
+- Detailed setup instructions
+- Supabase configuration
+- User and color customization
+- Deployment guides (Vercel, Netlify, GitHub Pages)
+- Project structure
+- Troubleshooting
+
+## ⚙️ Quick Configuration
+
+Edit `config.js` to customize users and colors:
+
+```javascript
+users: [
+  { name: 'Tamara & Rob', color: '#9C27B0', displayColor: '#7B1FA2' },
+  { name: 'Rachel', color: '#4CAF50', displayColor: '#388E3C' },
+  { name: 'Jessica', color: '#E91E63', displayColor: '#C2185B' },
+  { name: 'Tim', color: '#2196F3', displayColor: '#1976D2' },
+  { name: 'Joseph', color: '#FF9800', displayColor: '#F57C00' }
+]
+```
+
+## 🚢 Deploy
+
+**Vercel** (Recommended):
+```bash
+vercel
+```
+
+**Netlify**:
+```bash
+npm run build
+netlify deploy --prod --dir=dist
+```
+
+## 🛠️ Tech Stack
+
+- Vue 3 + Composition API
+- Vuetify 3 (Material Design)
+- Supabase (Database + Real-time)
+- V-Calendar
+- Vite
+
+---
+
+**Built with ❤️ for easy group coordination**
 
 ## ✨ Features
 
@@ -25,7 +99,7 @@ A beautiful, real-time multi-user availability calendar built with Vue 3, Vuetif
 
 ```bash
 # Navigate to the project directory
-cd flintcal
+cd timetribe
 
 # Install dependencies
 npm install
@@ -110,14 +184,14 @@ Open your browser to `http://localhost:3000` 🎉
 ## 📁 Project Structure
 
 ```
-flintcal/
+timetribe/
 ├── config.js                 # ⚙️ Main configuration file (EDIT THIS!)
 ├── .env                      # 🔐 Supabase credentials
 ├── index.html                # Entry HTML
 ├── package.json              # Dependencies
 ├── vite.config.js            # Vite configuration
 ├── public/
-│   └── FlintCal_Logo.png    # App logo (replace with your own)
+│   └── timetribe_logo.png   # App logo (replace with your own)
 └── src/
     ├── main.js               # App initialization
     ├── App.vue               # Main app component
@@ -174,7 +248,7 @@ ui: {
 
 ### Replace Logo
 
-Replace `public/FlintCal_Logo.png` with your own logo (recommended: 512x512px PNG)
+Replace `public/timetribe_logo.png` with your own logo (recommended: 512x512px PNG)
 
 ## 🔧 How It Works
 
@@ -212,7 +286,7 @@ The built files will be in the `dist/` folder.
 
 1. Update `vite.config.js` and uncomment the base path:
    ```javascript
-   base: '/flintcal/',  // Use your repository name
+   base: '/timetribe/',  // Use your repository name
    ```
 
 2. Deploy:
@@ -252,7 +326,7 @@ The built files will be in the `dist/` folder.
 3. Check browser console for error messages
 
 ### Logo not showing
-- Make sure `public/FlintCal_Logo.png` exists
+- Make sure `public/timetribe_logo.png` exists
 - Try refreshing the page
 - Check browser console for 404 errors
 
@@ -313,4 +387,4 @@ If you encounter any issues:
 
 **Made with ❤️ for coordinating availability with friends and family**
 
-🎉 **Enjoy using FlintCal!**
+🎉 **Enjoy using Time Tribe!**

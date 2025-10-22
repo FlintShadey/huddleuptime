@@ -25,11 +25,10 @@
                 v-for="user in entry.users"
                 :key="user.name"
                 :style="chipStyle(user.color)"
-                size="x-small"
+                size="small"
                 class="ma-0 overlap-user-chip"
-                :title="user.name"
                 label
-              >{{ user.initials }}</v-chip>
+              >{{ user.name }}</v-chip>
             </div>
           </v-sheet>
         </v-col>

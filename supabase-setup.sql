@@ -1,4 +1,4 @@
--- FlintCal Database Setup
+-- Time Tribe Database Setup
 -- Run this SQL in your Supabase SQL Editor
 
 -- Create the user_availability table
