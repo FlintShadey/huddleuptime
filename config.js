@@ -1,44 +1,38 @@
-// Time Tribe Configuration File
+// Huddle Up Time Configuration File
 // Easy-to-modify settings for users, colors, and date ranges
 
 export const config = {
   // App Information
-  appName: 'Time Tribe Availability Calendar',
-  appShortName: 'Time Tribe',
-  logoPath: '/timetribe_logo.png',
+  appName: 'Huddle Up Time Availability Calendar',
+  appShortName: 'Huddle Up Time',
+  logoPath: '/huddleuptime_logo.png',
 
   // Users/Couples Configuration
   // Add, remove, or modify users here
   // Each user needs: name, color (for date highlighting), and displayColor (for UI elements)
   users: [
     {
-      name: 'Tamara & Rob',
-      color: '#9C27B0',        // Purple - used for calendar date highlights
-      displayColor: '#7B1FA2',  // Darker purple - used for UI elements
+      name: 'Flint',
+      color: '#2196F3',        // Blue - used for calendar date highlights
+      displayColor: '#1976D2',  // Darker blue - used for UI elements
       textColor: '#FFFFFF'      // Text color for contrast
     },
     {
-      name: 'Rachel',
+      name: 'Maryam',
+      color: '#9C27B0',        // Purple
+      displayColor: '#7B1FA2',
+      textColor: '#FFFFFF'
+    },
+    {
+      name: 'Josh',
       color: '#4CAF50',        // Green
       displayColor: '#388E3C',
       textColor: '#FFFFFF'
     },
     {
-      name: 'Jessica',
-      color: 'pink',        // Pink
-      displayColor: 'pink',
-      textColor: '#FFFFFF'
-    },
-    {
-      name: 'Tim',
-      color: '#2196F3',        // Blue
-      displayColor: '#1976D2',
-      textColor: '#FFFFFF'
-    },
-    {
-      name: 'Joseph',
-      color: '#FF9800',        // Orange
-      displayColor: '#F57C00',
+      name: 'Karen',
+      color: '#E91E63',        // Pink
+      displayColor: '#C2185B',
       textColor: '#FFFFFF'
     }
   ],

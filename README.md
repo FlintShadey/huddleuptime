@@ -1,6 +1,6 @@
-# Time Tribe - Multi-User Availability Calendar
+# Huddle Up Time - Multi-User Availability Calendar
 
-![Time Tribe](./public/timetribe_logo.png)
+![Huddle Up Time](./public/huddleuptime_logo.png)
 
 A beautiful, real-time multi-user availability calendar built with Vue 3, Vuetify, and Supabase. Perfect for coordinating schedules with groups.
 
@@ -78,6 +78,8 @@ netlify deploy --prod --dir=dist
 
 **Built with ❤️ for easy group coordination**
 
+---
+
 ## ✨ Features
 
 - 🎨 **Beautiful Dark Mode UI** - Modern Material Design with Vuetify
@@ -99,7 +101,7 @@ netlify deploy --prod --dir=dist
 
 ```bash
 # Navigate to the project directory
-cd timetribe
+cd huddleuptime
 
 # Install dependencies
 npm install
@@ -184,14 +186,14 @@ Open your browser to `http://localhost:3000` 🎉
 ## 📁 Project Structure
 
 ```
-timetribe/
+huddleuptime/
 ├── config.js                 # ⚙️ Main configuration file (EDIT THIS!)
 ├── .env                      # 🔐 Supabase credentials
 ├── index.html                # Entry HTML
 ├── package.json              # Dependencies
 ├── vite.config.js            # Vite configuration
 ├── public/
-│   └── timetribe_logo.png   # App logo (replace with your own)
+│   └── huddleuptime_logo.png   # App logo (replace with your own)
 └── src/
     ├── main.js               # App initialization
     ├── App.vue               # Main app component
@@ -248,7 +250,7 @@ ui: {
 
 ### Replace Logo
 
-Replace `public/timetribe_logo.png` with your own logo (recommended: 512x512px PNG)
+Replace `public/huddleuptime_logo.png` with your own logo (recommended: 512x512px PNG)
 
 ## 🔧 How It Works
 
@@ -286,7 +288,7 @@ The built files will be in the `dist/` folder.
 
 1. Update `vite.config.js` and uncomment the base path:
    ```javascript
-   base: '/timetribe/',  // Use your repository name
+   base: '/huddle-up-time/',  // Use your repository name
    ```
 
 2. Deploy:
@@ -326,7 +328,7 @@ The built files will be in the `dist/` folder.
 3. Check browser console for error messages
 
 ### Logo not showing
-- Make sure `public/timetribe_logo.png` exists
+- Make sure `public/huddleuptime_logo.png` exists
 - Try refreshing the page
 - Check browser console for 404 errors
 

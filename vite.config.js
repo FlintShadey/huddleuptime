@@ -15,7 +15,7 @@ export default defineConfig({
     }
   },
   // Uncomment and modify this if deploying to GitHub Pages
-  // base: '/timetribe/',
+  // base: '/huddle-up-time/',
   build: {
     outDir: 'dist',
     sourcemap: false

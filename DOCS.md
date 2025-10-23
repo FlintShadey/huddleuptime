@@ -1,8 +1,8 @@
-# Time Tribe - Complete Documentation
+# Huddle Up Time - Complete Documentation
 
 > **A beautiful, real-time multi-user availability calendar for coordinating group schedules**
 
-![Time Tribe](./public/timetribe_logo.png)
+![Huddle Up Time](./public/huddleuptime_logo.png)
 
 ## 📚 Table of Contents
 
@@ -18,7 +18,7 @@
 
 ## Overview
 
-Time Tribe is a modern Vue 3 application that makes it easy for groups to coordinate availability. Built with Vuetify and Supabase, it provides real-time synchronization across devices with a beautiful, responsive interface.
+Huddle Up Time is a modern Vue 3 application that makes it easy for groups to coordinate availability. Built with Vuetify and Supabase, it provides real-time synchronization across devices with a beautiful, responsive interface.
 
 ### Tech Stack
 
@@ -53,7 +53,7 @@ Time Tribe is a modern Vue 3 application that makes it easy for groups to coordi
 ### Step 1: Install Dependencies
 
 ```bash
-cd timetribe
+cd huddleuptime
 npm install
 ```
 
@@ -105,7 +105,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 npm run dev
 ```
 
-Visit `http://localhost:3000` to see your Time Tribe calendar!
+Visit `http://localhost:3000` to see your Huddle Up Time calendar!
 
 ---
 
@@ -158,12 +158,12 @@ dateRange: {
 ### App Branding
 
 ```javascript
-appName: 'Time Tribe Availability Calendar',
-appShortName: 'Time Tribe',
-logoPath: '/timetribe_logo.png',
+appName: 'Huddle Up Time Availability Calendar',
+appShortName: 'Huddle Up Time',
+logoPath: '/huddleuptime_logo.png',
 ```
 
-Replace `public/timetribe_logo.png` with your own logo (recommended: square PNG, 512x512px).
+Replace `public/huddleuptime_logo.png` with your own logo (recommended: square PNG, 512x512px).
 
 ---
 
@@ -214,7 +214,7 @@ netlify deploy --prod --dir=dist
 1. **Update `vite.config.js`**:
 ```javascript
 export default defineConfig({
-  base: '/timetribe/',  // Your repo name
+  base: '/huddle-up-time/',  // Your repo name
   // ...
 })
 ```
@@ -231,14 +231,14 @@ npm run build
 ## Project Structure
 
 ```
-timetribe/
+huddleuptime/
 ├── config.js                # ⚙️ Main configuration
 ├── .env                     # 🔐 Supabase credentials
 ├── index.html               # Entry point
 ├── package.json             # Dependencies
 ├── vite.config.js           # Build config
 ├── public/
-│   └── timetribe_logo.png   # App logo
+│   └── huddleuptime_logo.png   # App logo
 └── src/
     ├── main.js              # App initialization
     ├── App.vue              # Main component
@@ -307,7 +307,7 @@ timetribe/
 **Problem**: Logo doesn't appear in hero section
 
 **Solution**:
-1. Verify `timetribe_logo.png` exists in `public/` folder
+1. Verify `huddleuptime_logo.png` exists in `public/` folder
 2. Check `logoPath` in `config.js` is correct
 3. Ensure image format is valid (PNG recommended)
 4. Check browser console for 404 errors

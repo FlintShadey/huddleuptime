@@ -286,7 +286,7 @@ const handleRealtimeUpdate = (payload) => {
  * Handle logo loading error
  */
 const onLogoError = () => {
-  console.warn('Logo failed to load. Make sure timetribe_logo.png exists in the public folder.')
+  console.warn('Logo failed to load. Make sure huddleuptime_logo.png exists in the public folder.')
 }
 
 /**
