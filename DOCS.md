@@ -20,6 +20,8 @@
 
 Huddle Up Time is a modern Vue 3 application that makes it easy for groups to coordinate availability. Built with Vuetify and Supabase, it provides real-time synchronization across devices with a beautiful, responsive interface.
 
+🌐 **Live Demo:** https://huddleuptime.netlify.app
+
 ### Tech Stack
 
 - **Frontend**: Vue 3 (Composition API)
@@ -192,6 +194,8 @@ vercel --prod
 
 ### Deploy to Netlify
 
+**Current Deployment:** https://huddleuptime.netlify.app
+
 1. **Install Netlify CLI**:
 ```bash
 npm i -g netlify-cli
@@ -207,7 +211,9 @@ npm run build
 netlify deploy --prod --dir=dist
 ```
 
-4. **Add environment variables** in Netlify dashboard
+4. **Add environment variables** in Netlify dashboard:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
 
 ### Deploy to GitHub Pages
 

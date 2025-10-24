@@ -4,6 +4,8 @@
 
 A beautiful, real-time multi-user availability calendar built with Vue 3, Vuetify, and Supabase. Perfect for coordinating schedules with groups.
 
+🌐 **Live Demo:** https://huddleuptime.netlify.app
+
 ## ✨ Features
 
 - 🎨 **Beautiful UI** - Modern gradient hero with prominent logo
@@ -53,14 +55,16 @@ users: [
 ]
 ```
 
-## 🚢 Deploy
+## � Deploy
+
+**Live Site:** https://huddleuptime.netlify.app
 
 **Vercel** (Recommended):
 ```bash
 vercel
 ```
 
-**Netlify**:
+**Netlify** (Currently Deployed):
 ```bash
 npm run build
 netlify deploy --prod --dir=dist
