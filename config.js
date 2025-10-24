@@ -19,8 +19,8 @@ export const config = {
     },
     {
       name: 'Maryam',
-      color: '#9C27B0',        // Purple
-      displayColor: '#7B1FA2',
+      color: '#E91E63',        // Pink
+      displayColor: '#C2185B',
       textColor: '#FFFFFF'
     },
     {
@@ -31,8 +31,8 @@ export const config = {
     },
     {
       name: 'Karen',
-      color: '#E91E63',        // Pink
-      displayColor: '#C2185B',
+      color: '#FF9800',        // Orange
+      displayColor: '#F57C00',
       textColor: '#FFFFFF'
     }
   ],
