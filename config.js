@@ -12,25 +12,25 @@ export const config = {
   // Each user needs: name, color (for date highlighting), and displayColor (for UI elements)
   users: [
     {
-      name: 'Flint',
+      name: 'Flint & Maryam',
       color: '#2196F3',        // Blue - used for calendar date highlights
       displayColor: '#1976D2',  // Darker blue - used for UI elements
       textColor: '#FFFFFF'      // Text color for contrast
     },
     {
-      name: 'Maryam',
-      color: '#E91E63',        // Pink
-      displayColor: '#C2185B',
-      textColor: '#FFFFFF'
-    },
-    {
-      name: 'Josh',
+      name: 'Leslie & Manny',
       color: '#4CAF50',        // Green
       displayColor: '#388E3C',
       textColor: '#FFFFFF'
     },
     {
-      name: 'Karen',
+      name: 'Bryan & Marlene',
+      color: '#9C27B0',        // Purple
+      displayColor: '#7B1FA2',
+      textColor: '#FFFFFF'
+    },
+    {
+      name: 'Molly & Jay',
       color: '#FF9800',        // Orange
       displayColor: '#F57C00',
       textColor: '#FFFFFF'
@@ -38,19 +38,16 @@ export const config = {
   ],
 
   // Date Range Configuration
-  // Dynamically shows current month plus next 3 months
+  // Fixed to May–July 2026
   dateRange: {
-    // Helper method to get start date (current month)
+    // Helper method to get start date (May 2026)
     getStartDate() {
-      const now = new Date();
-      return new Date(now.getFullYear(), now.getMonth(), 1);
+      return new Date(2026, 4, 1); // May 1, 2026
     },
     
-    // Helper method to get end date (3 months from now)
+    // Helper method to get end date (July 31, 2026)
     getEndDate() {
-      const now = new Date();
-      const endDate = new Date(now.getFullYear(), now.getMonth() + 3, 0); // Last day of 3 months ahead
-      return endDate;
+      return new Date(2026, 6, 31); // July 31, 2026
     },
     
     // Get formatted display string
